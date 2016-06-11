@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+<project name="AE" default="build" basedir="..">
+	<property name="lib">${basedir}/lib</property>
+	<property name="src.dir">${basedir}/erp-server</property>
+	<property name="gen-src.dir">${basedir}/gen-src/erp-server/classes</property>
+		<property name="client-gen-src.dir">${basedir}/gen-src/erp-client/classes</property>
+			<property name="database-gen-src.dir">${basedir}/gen-src/erp-database/classes</property>
+					
+		<path id="classpath">
+			<fileset dir="${lib}/spring">
+						<include name="*.jar" />
+					</fileset>
+		<fileset dir="${lib}/struts">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib}/hibernate">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib}/default">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<path id="srcpath">
+			<pathelement location="${src.dir}" />
+		</path>
+	<path id="gensrcpath">
+			<pathelement location="${gen-src.dir}" />
+		</path>
+ 
+ 	<path id="clientpath">
+ 	<path location="${client-gen-src.dir}"/>
+ 		<path location="${database-gen-src.dir}"/>
+ 	</path>
+ 		
+ 	<target name="build">
+ 	<delete dir="${gen-src.dir}"></delete>
+ 			<mkdir dir="${gen-src.dir}"/>
+ 			<javac encoding="ISO-8859-1" includeantruntime="false" destdir="${gen-src.dir}" debug="true"  >
+ 						<classpath refid="classpath" />
+<classpath refid="clientpath" />
+ 						<src refid="srcpath" />
+ 						 
+ 						<include name="**/*.java" />
+ 					</javac>
+<jar jarfile="${gen-src.dir}/erp-server.jar">
+			<fileset dir="${gen-src.dir}"/>
+							 
+</jar>
+ 		</target>
+</project>
