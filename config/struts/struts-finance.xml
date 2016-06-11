@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true"/>
+	
+	<package name="finance" namespace="/" extends="basic-rule">
+ <action name="feestructure" class="com.java.erp.webapp.web.feepayments.FeeStructureAction" method="getFeeStructure">
+ <result name="feestructure">jsp/finance/feestructure.jsp</result>
+ </action>
+ <action name="savefeestructure" class="com.java.erp.webapp.web.feepayments.FeeStructureAction" method="saveFeeStructure">
+ <result name="feestructure">jsp/finance/feestructure.jsp</result>
+ </action>
+  <action name="feepayments" class="com.java.erp.webapp.web.feepayments.FeePaymentsAction" method="getFeePayments">
+ <result name="feepayments">jsp/finance/feepayments.jsp</result>
+ </action>
+ <action name="fetchfeepayment" class="com.java.erp.webapp.web.feepayments.FeePaymentsAction" method="fetchFeePayment">
+ <result name="viewfeepayments">jsp/finance/viewfeepayments.jsp</result>
+ </action>
+ <action name="savefeepayment" class="com.java.erp.webapp.web.feepayments.FeePaymentsAction" method="saveFeePayment">
+ <result name="feepayments">jsp/finance/feestructure.jsp</result>
+ </action>
+	</package>
+
+	<include file="struts-basic.xml" />
+	 
+
+</struts>

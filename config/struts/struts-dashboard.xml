@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true"/>
+	
+	<package name="dashboard" namespace="/" extends="basic-rule">
+	 
+<action name="dashboard" class="com.java.erp.webapp.web.dashboard.DashBoardAction" method="dashboard">
+<result name="admin">jsp/dashboard/admindashboard.jsp</result>
+<result name="teacher">jsp/dashboard/teacherdashboard.jsp</result>
+<result name="staff">jsp/dashboard/staffdashboard.jsp</result>
+</action>
+<action name="addreminder" class="com.java.erp.webapp.web.dashboard.ReminderAction" method="addReminder">
+<result name="reminder">jsp/dashboard/addreminder.jsp</result>
+</action>
+<action name="savereminder" class="com.java.erp.webapp.web.dashboard.ReminderAction" method="saveReminder">
+<result name="reminder">jsp/dashboard/addreminder.jsp</result>
+</action>
+<action name="addannouncement" class="com.java.erp.webapp.web.dashboard.AnnouncementAction" method="addAnnouncement">
+<result name="announcement">jsp/dashboard/addannouncement.jsp</result>
+</action>
+
+	</package>
+
+	<include file="struts-basic.xml" />
+	 
+
+</struts>
