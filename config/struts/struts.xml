@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true"/>
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" namespace="/" extends="basic-rule">
+		<action name="login" class="com.java.erp.webapp.web.user.LoginAction" method="checkForAdmin" >
+		
+			<result name="login" >
+				 jsp/security/index.jsp
+			</result>
+			<result name="createAdmin">
+				 jsp/security/createadmin.jsp
+			</result>
+		</action>
+
+	</package>
+
+	<include file="struts-basic.xml" />
+	<include file="struts-user.xml" />
+	<include file="struts-setup.xml" />
+	<include file="struts-student.xml" />
+	<include file="struts-admission.xml" />
+</struts>

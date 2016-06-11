@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="admission" namespace="/" extends="basic-rule">
+		<action name="admission" method="getAdmissionList" class="com.java.erp.webapp.web.admission.AdmissionDetailsAction"  >
+		<result name="admission">jsp/admission/admission.jsp</result>
+		</action>
+		 <action name="admissionauthorization" method="getAdmissionAuthorizationList" class="com.java.erp.webapp.web.admission.AdmissionAuthorizationAction"  >
+		<result name="admissionauthorization">jsp/admission/admissionauthorize.jsp</result>
+		</action>
+		 <action name="saveAdmissionAuthorization" method="saveAdmissionAuthorizationList" class="com.java.erp.webapp.web.admission.AdmissionAuthorizationAction"  >
+		<result name="admissionauthorization">jsp/admission/admissionauthorize.jsp</result>
+		</action>
+		
+		 <action name="admissionsettings" method="getAdmissionSettingsList" class="com.java.erp.webapp.web.admission.AdmissionSettingsAction"  >
+		<result name="admissionsettings">jsp/admission/admissionsettings.jsp</result>
+		</action>
+		 <action name="saveAdmissionSettings" method="saveAdmissionSettings" class="com.java.erp.webapp.web.admission.AdmissionSettingsAction"  >
+		<result name="admissionsettings">jsp/admission/admissionsettings.jsp</result>
+		</action>
+		
+		
+		
+		<action name="admissionExtradetails" method="getAdmissionExtraList" class="com.java.erp.webapp.web.admission.AdmissionExtraDetailsAction"  >
+		<result name="getAdmissionExtraList">jsp/admission/admissionextradetails.jsp</result>
+		</action>
+	</package>
+
+	<include file="struts-basic.xml" />
+	 
+
+</struts>

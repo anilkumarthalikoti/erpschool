@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<package name="basic-rule" abstract="true"
+		extends="struts-default,hibernate-default,json-default">
+		 
+		<interceptors>
+			<interceptor name="servlet-config"
+				class="org.apache.struts2.interceptor.ServletConfigInterceptor" />
+			<interceptor name="login-interceptor"
+				class="com.java.erp.webapp.web.interceptors.LoginInterceptor" />
+			<interceptor-stack name="erp_interceptor_rules">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">false</param>
+				</interceptor-ref>
+			 <interceptor-ref name="login-interceptor">
+				</interceptor-ref> 
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="erp_interceptor_rules" />
+
+		<default-action-ref name="index" />
+
+		<global-results>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+			<result name="error_msg">/WEB-INF/jsp/message.jsp</result>
+		 			<result name="relogin" type="redirectAction">
+				<param name="actionName">index</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">home</param>
+				<param name="namespace">/</param>
+			</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+				<exception-mapping exception="com.java.erp.webapp.server.exception.ExceptionMessageHandler"
+				result="error" />
+		</global-exception-mappings>
+
+		<action name="index" class="com.java.erp.webapp.web.user.LoginAction" method="checkForAdmin" >
+		
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="createAdmin">
+				 jsp/security/createadmin.jsp
+			</result>
+		</action>
+		<action name="createadmin" class="com.java.erp.webapp.web.user.LoginAction" method="createAdmin" >
+		
+			<result name="login"  type="json"/>
+			
+ 	 
+			<result name="createAdmin" type="json"/>
+		 
+ 
+				 
+		</action>
+		<action name="logout" class="com.java.erp.webapp.web.user.LoginAction" method="logout" >
+		</action>
+
+	</package>
+</struts>

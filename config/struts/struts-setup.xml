@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="setup" namespace="/" extends="basic-rule">
+		<action name="schooldetails" method="getSchoolDetails" class="com.java.erp.webapp.web.setup.SchoolDetailsAction"  >
+		<result name="schoolDetails">jsp/setup/schooldetails.jsp</result>
+		</action>
+		<action name="saveSchoolDetails" method="saveSchoolDetails" class="com.java.erp.webapp.web.setup.SchoolDetailsAction"  >
+		<result name="schoolDetails">jsp/setup/schooldetails.jsp</result>
+		</action>
+		
+	 <action name="branchdetails" method="getBranchDetails" class="com.java.erp.webapp.web.setup.BranchDetailsAction"  >
+		<result name="branchDetails">jsp/setup/branchdetails.jsp</result>
+		</action>
+		<action name="saveBranchDetails" method="saveBranchDetails" class="com.java.erp.webapp.web.setup.BranchDetailsAction"  >
+		<result name="branchDetails">jsp/setup/branchdetails.jsp</result>
+		</action>
+		
+		
+		 <action name="coursedetails" method="getCourseDetails" class="com.java.erp.webapp.web.setup.CourseDetailsAction"  >
+		<result name="courseDetails">jsp/setup/coursedetails.jsp</result>
+		</action>
+		<action name="saveCourseDetails" method="saveCourseDetails" class="com.java.erp.webapp.web.setup.CourseDetailsAction"  >
+		<result name="courseDetails">jsp/setup/coursedetails.jsp</result>
+		</action>
+		 <action name="subjectdetails" method="getSubjectDetails" class="com.java.erp.webapp.web.setup.SubjectDetailsAction"  >
+		<result name="subjectDetails">jsp/setup/subjectdetails.jsp</result>
+		</action>
+		<action name="saveSubjectDetails" method="saveSubjectDetails" class="com.java.erp.webapp.web.setup.SubjectDetailsAction"  >
+		<result name="subjectDetails">jsp/setup/subjectdetails.jsp</result>
+		</action>
+		 <action name="batchdetails" method="getBatchDetails" class="com.java.erp.webapp.web.setup.BatchDetailsAction"  >
+		<result name="batchDetails">jsp/setup/batchdetails.jsp</result>
+		</action>
+		<action name="saveBatchDetails" method="saveBatchDetails" class="com.java.erp.webapp.web.setup.BatchDetailsAction"  >
+		<result name="batchDetails">jsp/setup/batchdetails.jsp</result>
+		</action>
+		<action name="studentadmissionfields" method="getStudentAdmissionFields" class="com.java.erp.webapp.web.setup.StudentAdmissionFieldsAction"  >
+		<result name="studentadmissionfields">jsp/setup/studentadmissionfields.jsp</result>
+		</action>
+		<action name="saveStudentAdmissionFields" method="saveStudentAdmissionFields" class="com.java.erp.webapp.web.setup.StudentAdmissionFieldsAction"  >
+		<result name="studentadmissionfields">jsp/setup/studentadmissionfields.jsp</result>
+		</action>
+	</package>
+
+	<include file="struts-basic.xml" />
+	 
+
+</struts>
