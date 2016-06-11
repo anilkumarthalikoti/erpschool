@@ -11,8 +11,13 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	$("select[name='course']").multiselect({
+	$("select[name='mappingId']").multiselect({
 	noneSelectedText: "Select Course",
+	
+	}).multiselectfilter();
+	
+	$("select[name='acyear']").multiselect({
+	noneSelectedText: "Select Academic Year",
 	
 	}).multiselectfilter();
 	
@@ -46,14 +51,18 @@ batchDetails=(List<Object[]>)request.getAttribute("batchDetails");
 <tr>
   <td width="155">Academic Year </td>
   <td width="23">:</td>
-<td width="320"><select name="acyear" id="acyear" onChange="formapp.update()"> 
-<option value="-1">Select Academic Year</option>
+<td width="320"><select multiple="multiple" name="acyear" id="acyear" onChange="formapp.update()"> 
+ <%
+ List<AcademicYears> academicYears=(List<AcademicYears>)request.getAttribute("academicYear");
+ for(AcademicYears acyear:academicYears){ %>
+ <option value="<%=acyear.getId() %>"><%=acyear.getAcademicYear() %></option>
+ <%} %>
 </select></td> 
 </tr>
 <tr>
   <td width="155">Course</td>
   <td width="23">:</td>
-<td width="320"><select multiple="multiple" name="course" id="course" onChange="admissionsettings.update()"> 
+<td width="320"><select multiple="multiple" name="mappingId" id="course" onChange="admissionsettings.update()"> 
  <%
  if(null!=batchDetails){
  for(Object[] batchDetail:batchDetails){
@@ -69,45 +78,44 @@ batchDetails=(List<Object[]>)request.getAttribute("batchDetails");
 </tr>
 <tr>
   <td>Admission Mode </td>
-  <td>:</td><td><select name='status' columnId='2'><option value="I">Interview</option><option value="E">Examination</option></select></td> </tr>
+  <td>:</td><td><select multiple="multiple" name='mode' columnId='2' selectMenu><option value="-1" selected="selected" >--Select--</option><option value="I">Interview</option><option value="E">Examination</option></select></td> </tr>
   <tr>
-  <td colspan="3"> <input type="button" value="Save" onClick="formapp.saveData()"/>&nbsp;<input type="button" value="Cancel" showGrid/></td>
+  <td colspan="3"> <input type="button" value="Save" onClick="admissionsettings.saveData()"/>&nbsp;<input type="button" value="Cancel" showGrid/></td>
   </tr>
 </tbody>
 </table>
 </form>
 </div>
 
- <div class="grid" id='grid' style="margin-left:500px; min-width:600px; width:90%; min-height:400px; max-height:500px; overflow-y: auto; overflow-x:hidden">
+ <div class="grid" id='grid' style="margin-left:500px; min-width:400px; width:500px; min-height:400px; max-height:500px; overflow-y: auto; overflow-x:hidden">
  <table  border="0" id="datatable" cellspacing="0" cellpadding="0" height="30" style="vertical-align:top" >
  <thead>
   <tr>
-    <th  class="hide">Id</th>
-    <th width="150">Academic year </th>
+   <th class="hide">MappingId</th>
+    <th width="100">Academic year </th>
     
-	<th width="50">Status</th>
-	<th width="50">Prefix</th>
-     <th width="100">Series Starts</th>
-	 <th width="100">Series Ends</th>
-	  <th width="150">Accept From</th>
-	 <th width="150">Accept To</th>
+	<th >Courses</th>
+	<th width="70">Mode</th>
+      
   </tr>
   </thead>
   <tbody>
   <%
-  List<AcademicYears> academicYearDetails=(List<AcademicYears>)request.getAttribute("academicYear");
+  List<Object[]> admissionSettings=(List<Object[]>)request.getAttribute("admissionSettings");
   
-  for(AcademicYears academicYear:academicYearDetails){
+  for(Object[] admissionSetting:admissionSettings){
+  String mode="Interview";
+  if("E".equals( admissionSetting[10].toString())){
+	  mode="Examination";
+  }
   %>
-  <tr id="ac#<%=academicYear.getId()%>" style="text-align:center">
-  <td class="hide"><%=academicYear.getId()%></td>
-  <td><%=academicYear.getAcademicYear() %></td>
-  <td><%=academicYear.getIsActive()%></td>
-    <td><%=academicYear.getApplicationPrefix()%></td>
-  <td><%=academicYear.getSeriesFrom() %></td>
-  <td><%=academicYear.getSeriesTo()%></td>
-  <td><%=sdf.format(academicYear.getAcceptFrom()) %></td>
-  <td><%=sdf.format(academicYear.getAcceptTo())%></td>
+  <tr   style="text-align:center">
+  <td class="hide"><%=admissionSetting[6]%></td>
+  <td><%=admissionSetting[9] %></td>
+  <td><%=admissionSetting[3]%>-<%=admissionSetting[4]%>-<%=admissionSetting[5]%></td>
+    
+    <td><%=mode%></td>
+   
   
   </tr>
   <%}%>
@@ -117,15 +125,8 @@ batchDetails=(List<Object[]>)request.getAttribute("batchDetails");
  </div>
 <script type="text/javascript">
 updateUi();
-$("input").attr("id",$("input").attr("name"));
-$("table[id='datatable'] tbody tr").each(function(){
-var value=$(this).find("td:eq(0)").html();
-var value1=$(this).find("td:eq(1)").html();
-$("select[id='acyear']").append($('<option/>', { 
-        value: value,
-        text : value1 
-    }));
-});
+//$("input").attr("id",$("input").attr("name"));
+ 
 </script>
 </body>
 </html>

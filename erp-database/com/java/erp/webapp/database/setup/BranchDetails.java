@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import com.java.erp.webapp.database.project.BaseFields;
 @Entity
-@Table(name="erp_branchs")
+@Table(name="gen_branchs")
 public class BranchDetails extends BaseFields implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

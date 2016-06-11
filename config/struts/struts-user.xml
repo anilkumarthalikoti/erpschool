@@ -19,7 +19,11 @@
 		<action name="home" method="home" class="com.java.erp.webapp.web.user.LoginAction">
 <result name="success">template.jsp</result>
 		</action>
+<action name="rolecreation" method="roleCreation" class="com.java.erp.webapp.web.user.RoleCreationACtion">
+<result name="rolecreation">jsp/user/rolecreation.jsp</result>
 
+
+</action>
 	</package>
 
 	<include file="struts-basic.xml" />

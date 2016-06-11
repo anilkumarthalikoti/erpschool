@@ -23,6 +23,7 @@ public class BatchDetailsBean extends BaseBean implements BatchDetailsI {
 			throws Exception {
 		Response result = new Result();
 		List<Object> resultHolder = new ArrayList<Object>();
+		int i=0;
 		for(Long branch:request.getBranch()){
 			
 			for(Long course:request.getCourse()){
@@ -31,12 +32,14 @@ public class BatchDetailsBean extends BaseBean implements BatchDetailsI {
 					BatchDetails batchDetails=null;
 					batchDetails=new BatchDetails();
 					 request.setActiveStatus("Y");
+					 batchDetails.setBatchId(getBatchDetailsDao().getCurrentDate().getTime()+i);
 					batchDetails.setIsActive(request.getActiveStatus());
 					batchDetails.getBatchDetailsPk().setBranchId(branch);
 					batchDetails.getBatchDetailsPk().setCourseId(course);
 					batchDetails.getBatchDetailsPk().setSubjectId(language);
 					getBatchDetailsDao().merge(batchDetails);
 					getBatchDetailsDao().flush();
+					i++;
 					//batchDetails.set
 				}
 				

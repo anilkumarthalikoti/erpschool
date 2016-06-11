@@ -8,6 +8,8 @@ public class LoginRequest extends BaseRequest {
 	String loginId;
 	String loginPassword;
 	boolean isValid;
+	
+	
 	String errorMessage;
 	public String getLoginId() {
 		return loginId;

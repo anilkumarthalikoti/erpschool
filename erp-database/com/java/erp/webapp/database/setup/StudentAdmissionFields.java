@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import com.java.erp.webapp.database.project.BaseFields;
 @Entity
-@Table(name="studetn_admission_fields")
+@Table(name="std_adm_fields")
 public class StudentAdmissionFields extends BaseFields implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

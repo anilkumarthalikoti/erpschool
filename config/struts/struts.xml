@@ -25,8 +25,12 @@
 	</package>
 
 	<include file="struts-basic.xml" />
+	<include file="struts-admin.xml" />
+	<include file="struts-dashboard.xml" />
 	<include file="struts-user.xml" />
 	<include file="struts-setup.xml" />
 	<include file="struts-student.xml" />
 	<include file="struts-admission.xml" />
+	<include file="struts-finance.xml" />
+	
 </struts>

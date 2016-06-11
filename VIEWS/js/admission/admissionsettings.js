@@ -1,5 +1,5 @@
 /**
- * Validation of admission form
+ * Validation of admission settings
  */
 
 var admissionsettings=new function(){

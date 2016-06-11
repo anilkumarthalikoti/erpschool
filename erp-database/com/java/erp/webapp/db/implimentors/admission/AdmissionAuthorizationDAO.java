@@ -40,4 +40,5 @@ public class AdmissionAuthorizationDAO extends BaseDAO implements AdmissionAutho
 		return details;
 	}
  
+	
 }

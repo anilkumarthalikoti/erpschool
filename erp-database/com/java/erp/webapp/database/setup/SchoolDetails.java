@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import com.java.erp.webapp.database.project.BaseFields;
 @Entity
-@Table(name="erp_school")
+@Table(name="gen_school")
 public class SchoolDetails extends BaseFields implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

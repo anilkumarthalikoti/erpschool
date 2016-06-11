@@ -9,5 +9,6 @@ import com.java.erp.webapp.db.interfaces.common.BaseDAOI;
 public interface AdmissionAuthorizationDAOI extends BaseDAOI {
  public List<AcademicYears> getAdmissionAuthorizationList() throws Exception;
  public  AcademicYears  getAcademicYear(Long id) throws Exception;
+ 
 
 }

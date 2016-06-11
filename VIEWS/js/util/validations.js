@@ -5,32 +5,41 @@
 var validate=new function(){
 	
 	this.validate=function(){
-		 var valid=true;
-		$("input[validate]").each(function(){
-										 
-										   
-										   var rules=$(this).attr("validate").split("#");
-										 
-										   if(rules.indexOf("notNull")>-1 && $(this).val().trim().length==0){
-											    $(this).keypress(function(){
-																		  $(this).removeClass("error");
-																		  });
-											   $(this).addClass("error");
-											   $(this).focus();
-											   valid=false;
-											   return false;
-											   }
-										   
-										    
-										   
-										   
-										   
-										   
-										   
-										   }); 
+		var valid=true;
+	$("[validate]").each(function(){
 		 
-		 
-		 return valid;
+		   var rules=$(this).attr("validate").split("#");
+		   if(rules.indexOf("notNull")>-1){
+		   alert($(this).prop('nodeName'));
+		   if($(this).prop('nodeName')== "select"){
+		   if($(this).selectedIndex==null){
+		      $(this).addClass("error");
+			   $(this).focus();
+			   valid=false;
+			   return false;
+		   }
+		   }else{
+		   if($(this).val().trim().length==0){
+			    $(this).keypress(function(){
+										  $(this).removeClass("error");
+										  });
+			   $(this).addClass("error");
+			   $(this).focus();
+			   valid=false;
+			   return false;
+			   }
+			   }
+		   }
+		    
+		   
+		   
+		   
+		   
+		   
+		   }); 
+
+
+return valid;
 		 
 		}
 		

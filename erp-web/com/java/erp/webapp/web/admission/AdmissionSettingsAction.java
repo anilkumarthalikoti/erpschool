@@ -17,20 +17,22 @@ public AdmissionSettingsAction(){
 }
 public String getAdmissionSettingsList() throws Exception{
 	 this.response=bean.getAdmissionSettingsList(getModel()).getResponse();
-	 List<Object> result=this.response.getResultList();
-	 getServletRequest().setAttribute("academicYear", result.get(0));
-	 getServletRequest().setAttribute("batchDetails", result.get(1));
+	 getResults();
+	 
 	 return "admissionsettings";
 }
  
 public String saveAdmissionSettings() throws Exception{
 	 this.response=bean.saveAdmissionSettings(getModel()).getResponse();
+	getResults();
+	 return "admissionsettings";
+}
+private void getResults(){
 	 List<Object> result=this.response.getResultList();
 	 getServletRequest().setAttribute("academicYear", result.get(0));
 	 getServletRequest().setAttribute("batchDetails", result.get(1));
-	 return "admissionsettings";
+	 getServletRequest().setAttribute("admissionSettings", result.get(2));
 }
-
 @Override
 public AdmissionSettingsRequest getModel() {
 

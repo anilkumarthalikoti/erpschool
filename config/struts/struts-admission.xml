@@ -12,6 +12,9 @@
 		<action name="admission" method="getAdmissionList" class="com.java.erp.webapp.web.admission.AdmissionDetailsAction"  >
 		<result name="admission">jsp/admission/admission.jsp</result>
 		</action>
+		<action name="saveAdmissionDetails" method="saveAdmissionStudent" class="com.java.erp.webapp.web.admission.AdmissionDetailsAction"  >
+		<result name="admission">jsp/admission/admission.jsp</result>
+		</action>
 		 <action name="admissionauthorization" method="getAdmissionAuthorizationList" class="com.java.erp.webapp.web.admission.AdmissionAuthorizationAction"  >
 		<result name="admissionauthorization">jsp/admission/admissionauthorize.jsp</result>
 		</action>
@@ -31,6 +34,13 @@
 		<action name="admissionExtradetails" method="getAdmissionExtraList" class="com.java.erp.webapp.web.admission.AdmissionExtraDetailsAction"  >
 		<result name="getAdmissionExtraList">jsp/admission/admissionextradetails.jsp</result>
 		</action>
+		<action name="admAcceptReject" method="getAdmissionAcceptRejectList" class="com.java.erp.webapp.web.admission.AdmissionDetailsAction"  >
+		<result name="admission">jsp/admission/admission.jsp</result>
+		</action>
+		<action name="acceptRejectAdmissionDetails" method="saveAcceptRejectAdmission" class="com.java.erp.webapp.web.admission.AdmissionDetailsAction"  >
+		<result name="admission">jsp/admission/admission.jsp</result>
+		</action>
+		
 	</package>
 
 	<include file="struts-basic.xml" />

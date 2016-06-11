@@ -34,7 +34,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
 </tr>
 <tr>
   <td>Status</td>
-  <td>:</td><td><select name='status' columnId='2'><option value='Y'>Active</option><option value="N">In active</option></select></td> </tr>
+  <td>:</td><td><select multiple="multiple" name='status' columnId='2' selectMenu><option value='Y'>Active</option><option value="N">In active</option></select></td> </tr>
  <tr>
   <td width="155">Prifix</td>
   <td width="23">:</td>
@@ -107,7 +107,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
  </div>
 <script type="text/javascript">
 updateUi();
-$("input").attr("id",$("input").attr("name"));
+//$("input").attr("id",$("input").attr("name"));
 $("table[id='datatable'] tbody tr").each(function(){
 var value=$(this).find("td:eq(0)").html();
 var value1=$(this).find("td:eq(1)").html();

@@ -1,5 +1,8 @@
 package com.java.erp.webapp.db.implimentors.common;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -11,6 +14,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+import com.java.erp.webapp.database.setup.AcademicYears;
 import com.java.erp.webapp.db.interfaces.common.BaseDAOI;
 
 public class BaseDAO implements BaseDAOI {
@@ -118,7 +122,7 @@ public class BaseDAO implements BaseDAOI {
 	@Override
 	public Object getSingleResult(String query) {
 		try {
-			return getCurrentSession().createQuery(query).list().get(0);
+			return getCurrentSession().createQuery(query).uniqueResult();
 
 		} catch (Exception e) {
 			logger.log(Level.WARNING, e.getMessage());
@@ -135,9 +139,12 @@ public class BaseDAO implements BaseDAOI {
 	@Override
 	public List<?> getResultList(String query, Map<Object, Object> params) {
 		try {
-			return getCurrentSession().createQuery(query).setProperties(params)
+		 
+			List data=getCurrentSession().createQuery(query).setProperties(params)
 					.list();
+			return data;
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.log(Level.WARNING, e.getMessage());
 			transaction.get().rollback();
 		} finally {
@@ -155,10 +162,8 @@ public class BaseDAO implements BaseDAOI {
 				queryObject.setParameter(entry.getKey().toString(),
 						entry.getValue());
 			}
-			if (queryObject.list() == null || queryObject.list().isEmpty()) {
-				return null;
-			}
-			return queryObject.list().get(0);
+			 
+			return queryObject.uniqueResult();
 
 		} catch (Exception e) {
 			logger.log(Level.WARNING, e.getMessage());
@@ -244,5 +249,27 @@ public class BaseDAO implements BaseDAOI {
 		}
 		return null;
 	}
-
+public Date getCurrentDate() throws Exception{
+	Long date=null;
+	String query="select now() d1,now() d2";
+	Object[] data=getNativeSingleResult(query);
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	
+	Date d=sdf.parse(data[0].toString());
+	return d;
+}
+@Override
+public List<AcademicYears> getActiveAcademicYear() throws Exception {
+	List<AcademicYears> details=null;
+	Map params=new HashMap<Object, String>();
+	//params.put("keysearch", "%"+keyWord+"%");
+	params.put("dateNow",getCurrentDate());
+	try{
+		details=(List<AcademicYears>)getResultList("select u  from AcademicYears u where u.acceptFrom<:dateNow and u.acceptTo>:dateNow ",params);
+	
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	return details;
+}
 }

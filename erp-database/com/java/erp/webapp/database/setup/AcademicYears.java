@@ -14,7 +14,7 @@ import org.hibernate.annotations.Type;
 
 import com.java.erp.webapp.database.project.BaseFields;
 @Entity
-@Table(name="erp_acyears")
+@Table(name="gen_acyears")
 public class AcademicYears extends BaseFields implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -3,6 +3,8 @@
 <script type="text/javascript" src="js/jquery/jquery.hotkeys.js"></script>
 <script type="text/javascript" src="js/util/validations.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.msgBox.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.multiselect.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.multiselect.filter.js"></script>
 <link href="styles/msgBoxLight.css" rel="stylesheet">
 <link href="css/ui.css" rel="stylesheet">
 <link href="css/jquery-ui.css" rel="stylesheet">
@@ -51,6 +53,8 @@ if(reloadDiv=="true"){
 var key="li[url='"+$("#preaction").val()+"']";
  $(key).parent().parent().show();
 $(key).click();
+}else{
+$("div[id='content']").load("dashboard.action");
 }
 $(document).bind('keydown', 'Alt+n', function(){
  
@@ -97,6 +101,12 @@ textToUpper();
  formUi();
 //datepicker
 datepickers();
+
+//select menu
+
+updateSelect();
+
+$("input[type='text']:eq(1)").focus();
 }
 
 
@@ -110,7 +120,8 @@ $("[class='selectable']").selectable();
 }
 function datepickers(){
 
-$('input[datepicker]').css("width","80px");
+$('input[datepicker]').css("width","100px");
+$("input[datepicker]").attr("placeholder","DD/MM/YYYY");
 $("input[datepicker]").after('<div style="display: inline-block;  " class="ui-state-default"><a href="#" onclick="openpicker(this);"><span   style="" class="ui-icon ui-icon-calendar"></span></a></div>');
 $('input[datepicker]').focusin( function(){
 if($(this).hasClass("hasDatepicker")){
@@ -192,10 +203,15 @@ $("div[class='grid']").fadeIn();
 }
 
 function textToUpper(){
-$('input[type=text]').val (function () {
-    return this.value.toUpperCase();
-});
-}
+	$('input[type="text"]').bind("keyup",function(){
+	 
+	$(this).val (function () {
+	 
+	    return this.value.toUpperCase();
+	});
+
+	});
+	}
 
 function formUi(){
 
@@ -204,13 +220,16 @@ $(tr).css("text-align","right");
 $(tr).css("padding","2px");
 $(tr).addClass("ui-widget-header");
 $(tr).css("height","25px");
+$("[class='form']").css("height","auto");
+$("[class='form'] table tbody tr td").css("border-bottom","1px solid #CDCDCD");
 var formHeight=$("[class='form'] table tr").length*25;
- $("[class='form']").css("border","0px");
+ $("[class='form']").css("border","1px solid #000000");
 $("[class='form'] table").css("height",formHeight+"px");
+
 $("[class='form'] table tbody tr:nth-child(2n), div[class='grid'] table tbody tr:nth-child(2n)").addClass("ui-state-default");
 $("[class='form'] table tbody tr:nth-child(2n+1), div[class='grid'] table tbody tr:nth-child(2n+1)").addClass("ui-state-active");
 $("div[class='grid'] table tbody tr:hover").addClass("ui-state-focus");
-$("input[validate]").each(function(){
+$("[validate]").each(function(){
 
 if($(this).attr("validate").split("#").indexOf("notNull")>-1){
 $(this).after("<span style='color:red'>&nbsp;*</span>");
@@ -262,6 +281,24 @@ function foot(){
 var div="<div class='foot'></div>"	;
 
 	return div;
+}
+
+function updateSelect(){
+
+$("select[selectMenu]").each(function(){
+$(this).attr("multiple","multiple")
+$(this).multiselect({
+ 	multiple:false,
+ 	selectedList:1
+	}).multiselectfilter();
+});
+$("select[selectMultipleMenu]").each(function(){
+$(this).attr("multiple","multiple")
+$(this).multiselect({
+ 	selectedList:15
+	}).multiselectfilter();
+});
+$("div[buttongroup]").buttonset();
 }
 
 </script>

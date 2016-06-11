@@ -89,7 +89,7 @@
  </div>
 <script type="text/javascript">
 updateUi();
-$("input").attr("id",$("input").attr("name"));
+//$("input").attr("id",$("input").attr("name"));
 </script>
 </body>
 </html>

@@ -109,7 +109,7 @@ actionInvocation.addPreResultListener(new PreResultListener() {
 					logger.error(e.getMessage());
 					session.setAttribute("ERROR_MSG", e.getMessage());
 					return "error_msg";
-//e.printStackTrace();
+ 
 				}
 			} else {
 				actionResult = "relogin";

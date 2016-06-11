@@ -19,9 +19,10 @@ school=(SchoolDetails)request.getAttribute("schoolDetails");
 <jsp:include page="../../jsp/message.jsp" />
 <div class="form" style="width:480px; height:300px; border: 1px dotted #999999; float:left  ">
 <form name="schoolDetails" method="post" onSubmit="return false">
-<table height="300"   cellspacing="0" cellpadding="0"  align="left"  >
+<table      cellspacing="0" cellpadding="0"  align="left"  >
  
 <tbody>
+<tr class="hide"><td colspan="3"></td></tr>
 <tr><td width="155">School Reg.No</td>
 <td width="23">:</td>
 <td width="320"><input type="text" name="regNo" id="regNo" validate="notNull#"/></td> 
@@ -42,7 +43,7 @@ school=(SchoolDetails)request.getAttribute("schoolDetails");
   <td>Website</td>
   <td>:</td><td><input type="text" name="webUrl" id="webUrl" validate="notNull#"/></td> </tr>
   <tr align="center">
-  <td colspan="3"> <input type="button" value="Save" onClick="schooldetails.saveData()"/>&nbsp;<input type="button" value="Reset"/></td>
+  <td colspan="3"> <input type="button" value="Save" onClick="schooldetails.saveData()"/>&nbsp; <input  style="display:none;"  type="button" onClick="return false;" value="Reset" showGrid="" ></input> </td>
   </tr>
 </tbody>
 </table>

@@ -29,10 +29,7 @@
 <td width="320"><input type="text" name="subjectName"   validate="notNull#" columnId='1'/></td> 
 </tr>
 <tr>
-  <td>Prority</td>
-  <td>:</td><td><input type="text" name="prority"   columnId='2' /></td> </tr>
- 
-  <td colspan="3"> <input type="button" value="Save" onClick="subjectdetails.saveData()"/>&nbsp;<input type="button" value="Cancel" showGrid/></td>
+   <td colspan="3"> <input type="button" value="Save" onClick="subjectdetails.saveData()"/>&nbsp;<input type="button" value="Cancel" showGrid/></td>
   </tr>
 </tbody>
 </table>
@@ -43,9 +40,9 @@
  <table  border="0" cellspacing="0" cellpadding="0" height="30" style="vertical-align:top" >
  <thead>
   <tr>
-    <th>Id</th>
+    <th class="hide">Id</th>
     <th>subject </th>
-    <th>Prority</th>
+     
      
   </tr>
   </thead>
@@ -56,9 +53,9 @@
   for(SubjectDetails subjectDetail:subjectDetails){
   %>
   <tr>
-  <td><%=subjectDetail.getSubjectId()%></td>
+  <td class="hide"><%=subjectDetail.getSubjectId()%></td>
   <td><%=subjectDetail.getSubjectName() %></td>
-  <td><%=subjectDetail.getPrority()%></td>
+ 
    
   
   
@@ -70,7 +67,7 @@
  </div>
 <script type="text/javascript">
 updateUi();
-$("input").attr("id",$("input").attr("name"));
+//$("input").attr("id",$("input").attr("name"));
 </script>
 </body>
 </html>

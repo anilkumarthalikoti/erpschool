@@ -21,13 +21,15 @@ public class Users extends BaseFields implements Serializable {
 	@Column(name = "userName")
 	String name;
 	@Column(name = "isActive")
-	String isActive;
+	Boolean isActive=false;
 	@Column(name = "emailId")
 	String mailId;
 	@Column(name = "phoneNo")
 	String phoneNo;
 	@Column(name = "isAdmin")
-	String isAdmin;
+	String isAdmin="N";
+	@Column(name="dashboardView")
+	private Byte dashboardView;
 
 	public String getUserId() {
 		return userId;
@@ -53,14 +55,7 @@ public class Users extends BaseFields implements Serializable {
 		this.name = name;
 	}
 
-	public String getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(String isActive) {
-		this.isActive = isActive;
-	}
-
+	 
 	public String getMailId() {
 		return mailId;
 	}
@@ -83,6 +78,22 @@ public class Users extends BaseFields implements Serializable {
 
 	public void setIsAdmin(String isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public Byte getDashboardView() {
+		return dashboardView;
+	}
+
+	public void setDashboardView(Byte dashboardView) {
+		this.dashboardView = dashboardView;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	 

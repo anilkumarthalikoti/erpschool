@@ -28,7 +28,7 @@ public class SubjectDetailsBean extends BaseBean implements SubjectDetailsI {
 			 
 		 }
 		subjectDetails.setSubjectName(request.getSubjectName());
-		subjectDetails.setPrority(request.getPrority()); 
+		 
 		
 		getSubjectDetailsDao().merge(subjectDetails);
 		getSubjectDetailsDao().flush();

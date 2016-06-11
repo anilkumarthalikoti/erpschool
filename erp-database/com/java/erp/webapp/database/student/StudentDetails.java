@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,6 +20,7 @@ public class StudentDetails extends BaseFields implements Serializable {
 private static final long serialVersionUID = 1L;
 @Id	
 @Column(name="ref_no")
+@GeneratedValue
 private Long id;
 @Column(name="application_no",unique=true,nullable=false)
 private String applicationNo;
@@ -28,7 +30,7 @@ private String studentId;
 private String admissionNo;
 @Column(name="requested_course")
 private Long requestedCourse;
-@Column(name="application_date",insertable=false)
+@Column(name="application_date",updatable=false)
 @Type(type="timestamp")
 @Temporal(TemporalType.TIMESTAMP)
 private Date appliedDate;
@@ -44,6 +46,12 @@ private String contactNo;
 private String address;
 @Column(name="application_status")
 private String applicationStatus;
+@Column(name="dateofbirth")
+private Date dob;
+@Column(name="join_year")
+private Long joinedAcYear;
+@Column(name="gender",length=8)
+private String gender;
 public String getApplicationNo() {
 	return applicationNo;
 }
@@ -113,6 +121,24 @@ public String getApplicationStatus() {
 }
 public void setApplicationStatus(String applicationStatus) {
 	this.applicationStatus = applicationStatus;
+}
+public Date getDob() {
+	return dob;
+}
+public void setDob(Date dob) {
+	this.dob = dob;
+}
+public Long getJoinedAcYear() {
+	return joinedAcYear;
+}
+public void setJoinedAcYear(Long joinedAcYear) {
+	this.joinedAcYear = joinedAcYear;
+}
+public String getGender() {
+	return gender;
+}
+public void setGender(String gender) {
+	this.gender = gender;
 }
 
 

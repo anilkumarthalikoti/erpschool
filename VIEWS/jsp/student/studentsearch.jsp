@@ -35,7 +35,7 @@
   if(null!=studentData && !studentData.isEmpty()){
   for(Object[] student:studentData){
   %>
-  <tr>
+  <tr applicationNo="<%=student[1]%>">
   <td><%=student[0]%></td>
  <td><%=student[1]%></td>
  <td><%=student[2]%></td>
@@ -57,7 +57,7 @@
  </div>
 <script type="text/javascript">
 updateUi();
-$("input").attr("id",$("input").attr("name"));
+//$("input").attr("id",$("input").attr("name"));
 </script>
 </body>
 </html>
