@@ -1,0 +1,373 @@
+body,html{
+	
+	margin: 0;
+	padding: 0;
+	height:100%;
+	width:100%;
+	background:#E3EBF3;
+	
+}
+
+.header{
+	 
+	height:50px;
+	background:#acbcfc;
+	 
+	position:fixed;
+	top:0;
+	left:250px;
+ right:0;
+ 
+}
+.fotter{
+ 
+	height:20px;
+	background:#acbcfc;
+ 
+	bottom:0;
+	left:250px;
+	position:fixed;
+	right:0;
+}
+ 
+.logo{
+width:72px;
+height:50px;
+}
+.left{
+top:0px;
+position:fixed;
+bottom:0px;
+width:250px;
+background:#FFFFFF;
+}
+.content{
+position:fixed;
+left:251px;
+top:51px;
+right:0px;
+bottom:20px;
+ background:#FFFFFF;
+overflow:hidden;
+font: 12px "Trebuchet MS", sans-serif;
+ 
+}
+.userdetails{
+ right:0;
+top:5px;
+left:73px;
+position:fixed;
+height:35px;
+
+}
+.linkHeader{
+width:inherit;
+position:absolute;
+
+height:50px;
+top:0px;
+}
+.linkBody{
+width:inherit;
+position:absolute;
+top:51px;
+bottom:145px;
+overflow:auto;
+left:0;
+margin:0;
+padding:0;
+ 
+}
+ 
+.linkFooter{
+width:inherit;
+position:absolute;
+
+height:20px;
+bottom:0px;
+}
+
+.profiledetails{
+width:130px;
+ overflow:hidden;
+  float:left;
+   font-size:10px; 
+   font-weight:normal;
+
+}
+.linkBody a div{
+
+height:25px;
+vertical-align:middle;
+border-bottom:1px dotted #999999;
+display:table-cell;
+width:250px;
+padding-left:30px;
+text-decoration:none;
+color:#666666;
+}
+.schoolLogo{
+width:inherit;
+position:absolute;
+ 
+bottom:21px;
+overflow:auto;
+left:0;
+margin:0;
+padding:0;
+height:125px; 
+}
+ .search-box-custom{
+ position:relative;
+ width:300px;
+ }
+ .search-box-custom input{
+ width:275px;
+ padding-right:20px;
+ }
+.search-box-custom a{
+    position:absolute;
+   right:2px;
+    top:2px;
+	z-index:1;
+}
+
+.linkBody ul{
+list-style-type: none;
+padding:0;
+left:0;
+margin:0;
+top:0;
+}
+.linkBody ul li{
+width:200px;
+height:22px;
+vertical-align:middle;
+display: block; 
+cursor: pointer;
+ cursor: hand;
+}
+.pageTitle{
+height:25px; 
+padding-left:10px;
+font-weight:bold;
+padding-top:10px;
+}
+.error{
+border-style: solid;
+border-color: #ff0000 #0000ff #ff0000 #0000ff;
+}
+
+ input[type='text']
+ {
+  text-transform: uppercase;
+ }
+ .form{
+ margin-top:10px;
+ margin-left:10px;
+ }
+ .form tr:nth-child(2n+1){
+ background-image:none;
+ }
+ .form tr:nth-child(2n){
+ background-image:none;
+ }
+ .form tr td:nth-child(1){
+ padding-left: 20px;
+ }
+
+ .grid  {
+ 
+  vertical-align:top;
+  margin-left:30px;
+  margin-top:10px;
+ 
+ }
+.small{
+min-width:600px;
+max-width:600px;
+width:600px;
+ 
+max-height:200px;
+height:auto;
+} 
+ 
+ 
+  .grid table thead th{
+  border: 1px dotted #FFFFFF;
+  
+  }
+ .search{
+ height:30px;
+ margin-top:5px;
+ 
+ width:100%; 
+ 
+  -moz-border-radius: 15px 15px 0 0; /* Firefox */
+  -webkit-border-radius: 15px 15px 0 0; /* Safari and Chrome */
+  border-radius: 15px 15px 0 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+/*
+  -moz-box-shadow: 0px 0px 20px #000; /* Firefox  
+  -webkit-box-shadow: 0px 0px 20px #000; /* Safari and Chrome  
+  box-shadow: 0px 0px 20px #000; /* Opera 10.5+, future browsers and IE6+ using IE-CSS3 */
+ 
+ }
+ 
+ 
+ 
+ .search span{
+ float:left;
+  margin:5px;
+ margin-left:25px;
+   cursor: pointer; 
+cursor: hand;
+
+ 
+ }
+ .search input{
+ 
+ float:right;
+ margin-top:5px;
+ margin-right:20px;
+ }
+   .foot{
+ height:30px;
+ margin-top:0px;
+ 
+ width:100%; 
+ 
+  -moz-border-radius: 0 0 15px 15px; /* Firefox */
+  -webkit-border-radius: 0 0 15px 15px; /* Safari and Chrome */
+  border-radius: 0 0 15px 15px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+/*
+  -moz-box-shadow: 0px 0px 20px #000; /* Firefox  
+  -webkit-box-shadow: 0px 0px 20px #000; /* Safari and Chrome  
+  box-shadow: 0px 0px 20px #000; /* Opera 10.5+, future browsers and IE6+ using IE-CSS3 */
+ 
+ }
+  .grid  tbody tr:nth-child(2n){
+  min-height:25px;
+  max-height:25px;
+  height:25px;
+  
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:lighter;
+  border-bottom:1px solid #333333;
+ 
+  
+  }
+.grid tbody tr:nth-child(2n+1){
+   
+  max-height:25px;
+  min-height:25px;
+   height:25px;
+   text-transform:uppercase;
+     font-size:10px;
+  font-weight:lighter;
+
+  }
+  .grid tbody tr:hover{
+  cursor: pointer; 
+cursor: hand;
+ 
+  }
+   .grid tbody tr td{
+   border-right:1px solid #333333;
+     border-bottom:1px solid #333333;
+	 padding-left:5px;
+
+   }
+   .grid tbody tr td:first-child {
+   border-left:1px solid #333333;
+ 
+   min-width:50px;
+   max-width:50px;
+   text-align:center;
+     
+
+   }
+   .grid tbody tr td:last-child{
+   border-right:0px solid #333333;
+     
+
+   }
+   .hide{
+   display:none;
+   }
+   .successMessage{
+   color:#009966;
+   width:100%;
+   text-align:center;
+   font-weight:bold;
+   text-transform:capitalize;
+ 
+   }
+    .errorMessage{
+   color: #FF0000;
+   font-weight:bold;
+   text-transform:capitalize;
+   }
+   .popup-hide, .popup-msg-hide{
+   display:none;
+   z-index: 1000000;
+   width:100%;
+   height:100%;
+    position:absolute;
+   
+   }
+   .popup-show{
+   position:absolute;
+   display:block;
+   z-index:1000000;
+   width:100%;
+   height:100%;
+ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /* IE 8 */
+filter: alpha(opacity=50);  /* IE 5-7 */
+-moz-opacity: 0.5;          /* Netscape */
+-khtml-opacity: 0.5;        /* Safari 1.x */
+opacity: 0.5;               /* Good browsers */
+   
+   }
+    .popup-msg-show {
+      display:block; 
+	}
+   	.selectable .ui-selecting { background: #FECA40; }
+	.selectable .ui-selected { background: #F39814; color: white; }
+	.selectable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+	.selectable li { margin: 1px; padding: 0.4em; height: 15px; }
+	
+	
+	
+	/*Multiselect css*/
+	
+	.ui-multiselect { padding:2px 0 2px 4px; text-align:left }
+.ui-multiselect span.ui-icon { float:right }
+.ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
+.ui-multiselect-single .ui-multiselect-checkboxes label { padding:5px !important }
+
+.ui-multiselect-header { margin-bottom:3px; padding:3px 0 3px 4px }
+.ui-multiselect-header ul { font-size:0.9em }
+.ui-multiselect-header ul li { float:left; padding:0 10px 0 0 }
+.ui-multiselect-header a { text-decoration:none }
+.ui-multiselect-header a:hover { text-decoration:underline }
+.ui-multiselect-header span.ui-icon { float:left }
+.ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 }
+
+.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000; text-align: left }
+.ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:auto }
+.ui-multiselect-checkboxes label { cursor:default; display:block; border:1px solid transparent; padding:3px 1px }
+.ui-multiselect-checkboxes label input { position:relative; top:1px }
+.ui-multiselect-checkboxes li { clear:both; font-size:0.9em; padding-right:3px }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label { text-align:center; font-weight:bold; border-bottom:1px solid }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a { display:block; padding:3px; margin:1px 0; text-decoration:none }
+
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label { border:none }
+
+/*Multiselect filter*/
+
+.ui-multiselect-hasfilter ul { position:relative; top:2px }
+.ui-multiselect-filter { float:left; margin-right:10px; font-size:11px }
+.ui-multiselect-filter input { width:100px; font-size:10px; margin-left:5px; height:15px; padding:2px; border:1px solid #292929; -webkit-appearance:textfield; -webkit-box-sizing:content-box; }
+

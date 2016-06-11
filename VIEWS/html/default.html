@@ -1,0 +1,279 @@
+<script type="text/javascript" src="js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="js/util/validations.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.msgBox.js"></script>
+<link href="styles/msgBoxLight.css" rel="stylesheet">
+<link href="css/ui.css" rel="stylesheet">
+<link href="css/jquery-ui.css" rel="stylesheet">
+<style type="text/css">
+body{
+font: 62.5% "Trebuchet MS", sans-serif;
+ 
+}
+	
+</style>
+<script type="text/javascript">
+var lastUrl;
+$(document).ready(function(){
+//SATART ON LOAD
+$("input[type='button']").button();
+    var icons = {
+      header: "ui-icon-arrow-1-e",
+      activeHeader: "ui-icon-arrow-1-s"
+    };
+ $("div[class='linkBody'] ").accordion({
+      icons: icons,
+	  collapsible: true,
+	   heightStyle: "content",active: false 
+    }); 
+ $(function() {
+		$("ol[class='selectable']").selectable();
+	});
+ 
+ $("li[url]").click(function(){
+ $('li[url]').removeClass('ui-state-disabled');
+ $(this).addClass('ui-state-disabled');
+ var link=$(this).attr("url");
+ if(link.indexOf("#")== -1){
+ //lastUrl=link;
+ $("#preaction").val(link);
+ $("#preaction").attr("true");
+ link=link+"?preaction="+link+"&reload=true";
+ $("div[id='content']").load(link);
+ }
+ });
+ 
+ //PRE LOAD
+ var reloadDiv=$("#preaction").attr("reload");
+ 
+if(reloadDiv=="true"){
+var key="li[url='"+$("#preaction").val()+"']";
+ $(key).parent().parent().show();
+$(key).click();
+}
+$(document).bind('keydown', 'Alt+n', function(){
+ 
+$('span[id="newDetails"]').click();
+return false;
+});
+$(document).bind('keydown', 'Alt+f', function(){
+ 
+$('input[name="searchKey"]').focus();
+return false;
+});
+ //END OF ON LOAD
+});
+
+
+function updateUi(){
+//tablholders
+tabHolders();
+
+//select
+selectUi();
+
+
+
+//Change Button Style
+buttons();
+
+//Change Page Title Style
+pageTitles();
+
+//Add search box to grid 
+gridSearchBox();
+ 
+
+//update datagrid header
+tableGridHeader();
+
+//Grid Click
+gridClick();
+
+//text toupper case
+textToUpper();
+ //Form Ui includes from grid color,update * for manditory fields,
+ formUi();
+//datepicker
+datepickers();
+}
+
+
+function tabHolders(){
+
+$("[tabholder]").tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+}
+
+function selectUi(){
+$("[class='selectable']").selectable();
+}
+function datepickers(){
+
+$('input[datepicker]').css("width","80px");
+$("input[datepicker]").after('<div style="display: inline-block;  " class="ui-state-default"><a href="#" onclick="openpicker(this);"><span   style="" class="ui-icon ui-icon-calendar"></span></a></div>');
+$('input[datepicker]').focusin( function(){
+if($(this).hasClass("hasDatepicker")){
+return;
+}
+$(this).attr("id",new Date().getTime());
+
+      $(this).datepicker({ 
+	 	  dateFormat:"dd/mm/yy"}); 
+ 
+      return false;
+});
+
+}
+function openpicker(ele){
+  $(ele).parent().prev().focus()  ;
+}
+function buttons(){
+$("input[type='button'] ").button();
+}
+function pageTitles(){
+$("[class='pageTitle']").addClass("ui-widget-header");
+}
+function gridSearchBox(){
+$("div[class='grid']").prepend(createSearch());
+$("div[class='grid'][no-form] span[id='newDetails']").hide();
+$("div[class='grid'] table").after(foot());
+//Rounded corner for search box
+$("[class='search']").addClass("ui-widget-header");
+$("[class='foot']").addClass("ui-widget-header");
+}
+
+
+function tableGridHeader(){
+$("div[class='grid'] table thead").addClass("ui-widget-header");
+}
+
+
+function gridClick(){
+
+var gridExist=$("div[class='grid']").length;
+if(gridExist>0){
+
+
+//New form details
+$('span[id="newDetails"]').click(function(){
+$("div[class='grid']").fadeOut();
+
+$('[class="form"]').fadeIn();
+ $('[class="form"] form')[0].reset();
+});
+
+$('[class="grid"]').hide();
+$('[class="form"][nohide]').show();
+$("div[class='grid']").css('margin-left','10px');
+$("div[class='grid']").css('margin-right','10px');
+$("div[class='grid'] table").css('width','100%');
+$("div[class='grid'] table tbody tr").click(function(){
+var tr=$(this);
+$('[columnId]').each(function(){
+var colId='td:eq('+$(this).attr("columnId")+')';
+var key=$(tr).find(colId);
+$(this).val($(key).html());
+});
+$("div[class='grid']").fadeOut();
+$('[class="form"]').fadeIn();
+});
+ 
+$('[showGrid]').val("Search");
+$('span[id="newDetails"]').click();
+$('[showGrid]').click(function(){
+$('[class="form"]').fadeOut();
+$("div[class='grid']").fadeIn();
+
+});
+}
+
+
+}
+
+function textToUpper(){
+$('input[type=text]').val (function () {
+    return this.value.toUpperCase();
+});
+}
+
+function formUi(){
+
+var tr=$("[showGrid]").parent();
+$(tr).css("text-align","right");
+$(tr).css("padding","2px");
+$(tr).addClass("ui-widget-header");
+$(tr).css("height","25px");
+var formHeight=$("[class='form'] table tr").length*25;
+ $("[class='form']").css("border","0px");
+$("[class='form'] table").css("height",formHeight+"px");
+$("[class='form'] table tbody tr:nth-child(2n), div[class='grid'] table tbody tr:nth-child(2n)").addClass("ui-state-default");
+$("[class='form'] table tbody tr:nth-child(2n+1), div[class='grid'] table tbody tr:nth-child(2n+1)").addClass("ui-state-active");
+$("div[class='grid'] table tbody tr:hover").addClass("ui-state-focus");
+$("input[validate]").each(function(){
+
+if($(this).attr("validate").split("#").indexOf("notNull")>-1){
+$(this).after("<span style='color:red'>&nbsp;*</span>");
+}
+});
+
+$('body').on('keydown', 'input, select, textarea', function(e) {
+	var self = $(this)
+	  , form = self.parents('div[id="content"]')
+	  , focusable
+	  , next
+	  , prev
+	  ;
+
+	if (e.shiftKey) {
+	 if (e.keyCode == 13) {
+	     focusable =   form.find('input,a,select,button,textarea').filter(':visible');
+	     prev = focusable.eq(focusable.index(this)-1); 
+
+	     if (prev.length) {
+	        prev.focus();
+	     } else {
+	        //form.submit();
+	    }
+	  }
+	}
+	  else
+	if (e.keyCode == 13) {
+	    focusable = form.find('input,a,select,button,textarea').filter(':visible');
+	    next = focusable.eq(focusable.index(this)+1);
+	    if (next.length) {
+	        next.focus();
+	    } else {
+	       // form.submit();
+	    }
+	    return false;
+	}
+	});
+}
+
+function createSearch(){
+var title=$("[class='pageTitle']").html();
+var div="<div class='search'><input type='text'/> <span id='newDetails' class=' ui-icon ui-icon-circle-triangle-w' title='Add new "+title+"'>&nbsp;</span> </div>"	;
+
+	return div;
+}
+
+function foot(){
+var div="<div class='foot'></div>"	;
+
+	return div;
+}
+
+</script>
+<div  id="popUpErp" class="popup-hide" >
+
+
+ </div>
+ <div id="popUpErpMsg"  class="popup-msg-hide" >
+ <table width="100%" height="100%">
+<tr><td valign="top"  align="center">
+ 
+<table  style="margin-top:120px"  ><tr><td align="center"><img src="images/loader.gif"/></td></tr><tr><td id="message"  >Loading..</td></tr></table>
+ 
+</td></tr></table>
+ </div>

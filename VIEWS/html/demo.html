@@ -1,0 +1,89 @@
+<script type="text/javascript" src="../../../../tomcat7/webapps/ERP/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../../../../tomcat7/webapps/ERP/js/jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="../../../../tomcat7/webapps/ERP/js/util/validations.js"></script>
+<script type="text/javascript" src="../../../../tomcat7/webapps/ERP/js/jquery/jquery.msgBox.js"></script>
+<link href="../../../../tomcat7/webapps/ERP/styles/msgBoxLight.css" rel="stylesheet">
+<link href="../../../../tomcat7/webapps/ERP/css/ui.css" rel="stylesheet">
+<link href="../../../../tomcat7/webapps/ERP/css/jquery-ui.css" rel="stylesheet">
+<style type="text/css">
+body{
+font: 62.5% "Trebuchet MS", sans-serif;
+ 
+		}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+//SATART ON LOAD
+$("input[type='button']").button();
+    var icons = {
+      header: "ui-icon-arrow-1-e",
+      activeHeader: "ui-icon-arrow-1-s"
+    };
+ $("div[class='linkBody'] ").accordion({
+      icons: icons,
+	  collapsible: true,
+	   heightStyle: "content"
+    }); 
+ 
+ 
+ $("li[url]").click(function(){
+ $("div[id='content']").load($(this).attr("url"));
+ });
+ //END OF ON LOAD
+});
+function studentSearch(){
+$("div[id='content']").html("<center>SEARCHING STUDENT DATA....</center>");
+//$("div[id='content']").load("studentsearch.action");
+ return false;
+}
+function updateUi(){
+$("input[type='button']").button();
+ 
+$("div[id='grid']").prepend(createSearch());
+$("input[validate]").each(function(){
+
+if($(this).attr("validate").split("#").indexOf("notNull")>-1){
+$(this).after("<span style='color:red'>&nbsp;*</span>");
+}
+});
+
+$('body').on('keydown', 'input, select, textarea', function(e) {
+	var self = $(this)
+	  , form = self.parents('div[id="content"]')
+	  , focusable
+	  , next
+	  , prev
+	  ;
+
+	if (e.shiftKey) {
+	 if (e.keyCode == 13) {
+	     focusable =   form.find('input,a,select,button,textarea').filter(':visible');
+	     prev = focusable.eq(focusable.index(this)-1); 
+
+	     if (prev.length) {
+	        prev.focus();
+	     } else {
+	        //form.submit();
+	    }
+	  }
+	}
+	  else
+	if (e.keyCode == 13) {
+	    focusable = form.find('input,a,select,button,textarea').filter(':visible');
+	    next = focusable.eq(focusable.index(this)+1);
+	    if (next.length) {
+	        next.focus();
+	    } else {
+	       // form.submit();
+	    }
+	    return false;
+	}
+	});
+
+}
+
+function createSearch(){
+var div="<div class='search'><input type='text'/></div>"	;
+	return div;
+}
+</script>
