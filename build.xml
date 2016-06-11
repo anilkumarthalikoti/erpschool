@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+<project name="SCHOOL_ERP" default="release" basedir=".">
+	<property name="deploy">${basedir}/deploy</property>
+	<property name="root">${deploy}/ERP</property>
+	<property name="ui">${basedir}/VIEWS</property>
+	<property name="config">${basedir}/config</property>
+	<property name="lib">${basedir}/lib</property>
+	<property name="WEB-INF">${root}/WEB-INF</property>
+	<property name="serverpath">D:/tomcat7/webapps</property>
+	<target name="release">
+		<ant antfile="${basedir}/erp-client/build_client.xml"/>
+		<ant antfile="${basedir}/erp-database/build_database.xml"/>
+		<ant antfile="${basedir}/erp-server/build_server.xml"/>
+			<ant antfile="${basedir}/erp-web/build_web.xml"/>
+		<delete dir="${deploy}" />
+
+		<mkdir dir="${deploy}" />
+
+		<mkdir dir="${root}" />
+
+		<copy todir="${root}">
+			<fileset dir="${ui}" />
+		</copy>
+
+		<mkdir dir="${WEB-INF}/lib" />
+
+		<mkdir dir="${WEB-INF}/classes" />
+
+		<copy todir="${WEB-INF}">
+			<fileset dir="${config}/WEB-INF" />
+		</copy>
+
+		<copy todir="${WEB-INF}/lib">
+			<fileset dir="${lib}/struts" />
+			<fileset dir="${lib}/hibernate" />
+			<fileset dir="${lib}/spring" />
+		
+			<fileset dir="${basedir}/gen-src/erp-client/classes" >
+							<include name="*.jar"/>
+							</fileset>
+						<fileset dir="${basedir}/gen-src/erp-server/classes" >
+										<include name="*.jar"/>
+										</fileset>
+							
+							<fileset dir="${basedir}/gen-src/erp-database/classes" >
+											<include name="*.jar"/>
+											</fileset>	 
+		</copy>
+
+		<copy todir="${WEB-INF}/classes">
+			<fileset dir="${config}/messages" />
+			<fileset dir="${config}/struts" />
+			<fileset dir="${basedir}/gen-src/erp-web/classes" >
+											<exclude name="*.jar"/>
+											</fileset>
+			<fileset dir="${config}/hibernate" includes="*.xml" />
+
+			
+		</copy>
+	 <!--
+		<mkdir dir="${WEB-INF}/classes/META-INF"/>
+		 
+		<copy todir="${WEB-INF}/classes/META-INF">
+					<fileset dir="${config}/META-INF" />
+					 
+				</copy> -->
+<copy todir="${serverpath}">
+	<fileset dir="${deploy}" />
+</copy>
+		
+		
+		<delete dir="${deploy}" />	
+		
+	</target>
+</project>
