@@ -9,7 +9,7 @@
 	<session-factory>
 
 		<!-- change your database configuration properties here -->
-		<property name="connection.username">root</property>
+		<property name="connection.username">erp</property>
 		<property name="connection.url">
 			jdbc:mysql://localhost:3306/erp
 		</property>
@@ -19,7 +19,7 @@
 		<property name="show_sql">
 			true
 		</property>
-		<property name="connection.password">anil</property>
+		<property name="connection.password">erp</property>
 		<property name="connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>
